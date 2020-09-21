@@ -13,7 +13,20 @@ The result of segmentation is the image of identifiers, where each object is ass
 
 ## Image segmentation methods
 The literature on image processing is extensive, so segmentation techniques available tens occur. Some of them are:
+- thresholding
+- edge detection
+- classification 
+- grouping 
+- watershed segmentation
+- binarization
+- growing area
 
+The appropriate segmentation method is selected specifically for the image being processed. Its choice depends on the complexity of the image. This often requires complex multi-step methods.
+
+## Thresholding
+Thresholding is the simplest segmentation method. It is based on pixel intensities and compares their values with a given threshold value, which enables the image to be split into an object and a background. However, if the effect of an action is to isolate more than one object, this case is called classification or grouping. The effect of thresholding is visible in the image, separable areas usually marked with two different colors (eg black and white for binarization). When using multi-criteria thresholding, successive shades of gray are used.
+
+# Summary
 
 # Autors
 Marcin Opiołka(https://github.com/Marcin3232), Tomasz Cieśliński (https://github.com/tomacie861), Michał Orlof
