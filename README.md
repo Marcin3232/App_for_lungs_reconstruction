@@ -78,6 +78,24 @@ The criterion can be static, e.g. a given intensity, or dynamic, e.g. the averag
 
 ## Mathematical morphology
 
+### Dilatation
+
+Dilation is a procedure of applying Minkowski's sum to the image. It consists in applying a rotated structural element to each pixel in the image, when at least one chick within the structural element has the value 1, the central value of the element is replaced with 1.
+
+### Erode 
+
+Erode is a process of applying Minkowski's difference to the image. It consists of applying a rotated structural element to each pixel in the image, when at least one pixel within the structural element is equal to 0, then the central value of the element is replaced by 0.
+
+# Implementation
+
+## Database 
+
+For the implementation of the project, we used to tomographic images of the lungs in the ".dcm" format. The size of the photos is 512x512. In the Aplikacja.mlapp application, we select the images that represent / cover the lung area.
+Using the ```uigetdir``` function, the folder containing the tomographic image database was selected, and using the loop, each image or only the important ones that would be needed for the reconstruction and to help the function ```C=cat(dim,A,B) ``` to combine the images.
+
+## Lung segmentation
+
+
 # Summary
 
 # Autors
