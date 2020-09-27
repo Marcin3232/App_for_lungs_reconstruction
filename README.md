@@ -4,8 +4,13 @@ The aim of the project is to reconstruct the 3D lung tree from cross-sectional p
 
 # Application Examples
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex1.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex1.png">
 </p>
+
+# Technologies
+
+- Matlab
+- App designer matlab
 
 # Introducing
 
@@ -125,7 +130,7 @@ end
 The threshold value was selected manually on the basis of the value of the pixel intensity of the pulmonary trunk and the knowledge of the human thoracic anatomy. In the application, we have more control over the selected parameters. The result is segmented lungs after applying the mask to the image:
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex2.png">
+  <img  src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex2.PNG">
 </p>
 
 ## bronchial segmentation
@@ -151,7 +156,7 @@ end
 Results:
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex3.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex3.PNG">
 </p>
 
 ## Pulmonary trunk segmentation
@@ -198,7 +203,7 @@ Segmentation get round over every adjacent area, the condition for segmentation 
  ```
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex4.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex4.PNG">
 </p>
 
 # Visualisation
@@ -207,8 +212,8 @@ For 3D visualization, the built-in Matlab function was used to visualize three-d
 - ```fv = isosurface(X,Y,Z,V,isovalue)``` -  computes isosurface data from the volume data V at the isosurface value specified in isovalue. That is, the isosurface connects points that have the specified value much the way contour lines connect points of equal elevation.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex5.png">
-</p
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex5.PNG">
+</p>
 
 # Aplication and use of the program
 
@@ -216,31 +221,31 @@ For 3D visualization, the built-in Matlab function was used to visualize three-d
 2. Starting the application. The applications can be downloaded as an .exe file, if we do not have a Matlab, also if we want, we can download the working version of Application.mlapp.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex6.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex6.PNG">
 </p>
 
 3. After opening the application, we have the option of choosing a folder, where we add this folder
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex7.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex7.PNG">
 </p>
 
 4. At this stage, we can view photos, we cut out photos that are outside the outline of the lungs.
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex8.png">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex8.PNG">
 </p>
 
 5. In the next stage, we move on to lung segmentation. We choose the thresholding range.
 
- <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex9.png">
-</p> 
+<p align="center">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex9.PNG">
+</p>
 
 6. In the next step, bronchial segmentation takes place. Define the segmentation threshold as in Step 2. Then select the row, column and tolerances for the algorithm
 
- <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex10.png">
+<p align="center">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex10.PNG">
 </p> 
 
 7. The final step is segmentation of the pulmonary trunk. The intensity difference should be selected, after which the segmentation of growth will propagate. This step can be skipped and the result of the program is the reconstruction of the bronchial tree.
@@ -248,11 +253,18 @@ For 3D visualization, the built-in Matlab function was used to visualize three-d
 
 8. Finally, we press "Generuj" button, where the 3D visualization takes place.
 
- <p align="center">
-  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex1.png">
-</p> 
+<p align="center">
+  <img src="https://github.com/Marcin3232/App_for_lungs_reconstruction/blob/master/ImageToReadme/ex1.png">
+</p>
 
 # Summary
+Assumptions Project have been fulfilled - a tree made of pulmonary segmentation of tomographic images of the chest.
+
+# Possibilities for further development
+
+- better optimization
+- real-time reconstruction observation
+- improving the method of growing the area 
 
 # Autors
 Marcin Opiołka(https://github.com/Marcin3232), Tomasz Cieśliński (https://github.com/tomacie861), Michał Orlof
