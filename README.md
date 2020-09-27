@@ -144,8 +144,63 @@ maskedImage(~BW) = 0;
 end
 
 ```
+- Contrast improvement - similar to the first function with lung segmentation.
+- Removing contours - removing the contours of the lungs that were created during lung segmentation for this purpose the function ```grayconnected``` was used - selects a continuous area of  image with similar gray values using filling techniques. ```BW=grayconnected(I,row,column)``` specifies a range of intensity values to include in the mask.
+- Second process contour removing - individual fragments and noises were removed with ```imclearborder```.
 
+Results:
 
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex3.png">
+</p>
+
+## Pulmonary trunk segmentation
+
+The last stage is the segmentation of the pulmonary trunk, for this purpose the program code from laboratory activities was used from image processing from segmentation-area enlargement. 26th neighbors added in function ```[neighbours]=Fun_neighbors(c,x,y,z,neighbours)```:
+
+```
+    case 26
+        sasiedzi=[  c(1)-1,c(2)+1,c(3)+1; c(1),c(2)+1,c(3)+1; c(1)+1,c(2)+1,c(3)+1;
+                    c(1)-1,c(2)+1,c(3); c(1),c(2)+1,c(3); c(1)+1,c(2)+1,c(3);
+                    c(1)-1,c(2)+1,c(3)-1; c(1),c(2)+1,c(3)-1; c(1)+1,c(2)+1,c(3)-1;
+                    
+                    c(1)-1,c(2),c(3)+1; c(1),c(2),c(3)+1; c(1)+1,c(2),c(3)+1;       
+                    c(1)-1,c(2),c(3);                     c(1)+1,c(2),c(3);         
+                    c(1)-1,c(2),c(3)-1; c(1),c(2),c(3)-1; c(1)+1,c(2),c(3)-1;       
+                    
+                    c(1)-1,c(2)-1,c(3)+1; c(1),c(2)-1,c(3)+1; c(1)+1,c(2)-1,c(3)+1;
+                    c(1)-1,c(2)-1,c(3); c(1),c(2)-1,c(3); c(1)+1,c(2)-1,c(3);
+                    c(1)-1,c(2)-1,c(3)-1; c(1),c(2)-1,c(3)-1; c(1)+1,c(2)-1,c(3)-1];
+```
+
+Segmentation get round over every adjacent area, the condition for segmentation is the maximum set intensity that the pixel tolerates and spreads further, otherwise it does not take it into account and goes backwards and continues the algorithm until the last pixel is found in the segmentation condition. The beginning of the segmentation stage is to set the starting point, the condition for its setting is to know the location of the pulmonary trunk on the CT image. A loop of segmentation propagation:
+
+```
+      while (~isempty(kolejka))                
+        c=kolejka(1,:,:);                       
+        kolejka=kolejka(2:size(kolejka,1),:,:); 
+        if (~maska(c(1),c(2),c(3)))                 
+            maska(c(1),c(2),c(3))=true;             
+            if (abs(Jd(c(1),c(2),c(3))-Jsr)<=max_dJ) 
+                Jw(c(1),c(2),c(3))=true;          
+                sasiedzi=Fun_neighbors(c,x,y,z,sasiedztwo);    
+                kolejka=[   kolejka;
+                 sasiedzi];      
+                             if (kryterium==2)
+                    Jsr=(l_pix*Jsr+Jd(c(1),c(2),c(3)))/(l_pix+1) 
+                    licz=licz+1
+                end   
+             l_pix=l_pix+1;                         
+            end
+        end
+      end
+      
+ ```
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex4.png">
+</p
+  
 # Summary
 
 # Autors
