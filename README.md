@@ -3,6 +3,9 @@
 The aim of the project is to reconstruct the 3D lung tree from cross-sectional photos of the chest, using the Matlab environment and image processing methods such as image segmentation. It is required that the photos are the same size and arranged in descending order in relation to the name.
 
 # Application Examples
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex1.png">
+</p>
 
 # Introducing
 
@@ -94,6 +97,53 @@ For the implementation of the project, we used to tomographic images of the lung
 Using the ```uigetdir``` function, the folder containing the tomographic image database was selected, and using the loop, each image or only the important ones that would be needed for the reconstruction and to help the function ```C=cat(dim,A,B) ``` to combine the images.
 
 ## Lung segmentation
+
+At this stage, we segment the lungs using thresholding. Choose the threshold, in the tested images, the best threshold is 17990. Lung segmentation function:
+
+```
+function [BW,maskedImage] = segmentImage(X,T)
+X = imadjust(X);
+BW = X > T;
+BW = imcomplement(BW);
+BW = imclearborder(BW);
+radius = 3; 
+decomposition = 0;
+se = strel('disk', radius, decomposition);
+radius = 3;
+decomposition = 0;
+se = strel('disk', radius, decomposition);
+BW = imdilate(BW, se);
+maskedImage = X;
+maskedImage(~BW) = 0;
+end
+```
+- ``` X=imadjust(X) ``` - maps the grayscale image intensity values of X to new X values. By default ``` imadjust ```, saturates the bottom 1% and top 1% of all pixel values. Increases the contrast of the output X image.
+- Image thresholding - Then the threshold is the output image ``` BW=X>T ```where the threshold value is set in the main program.
+- Mask inversion - the mask inversion function imcomplement (BW), to remove noise outside the lung area, using the imcomplement (BW) function - suppresses structures in the image that are brighter than their surroundings and which are connected to the image frame.
+- Mathematical morphology - the last step is to fill in and remove the last noises outside the lung area, and for this purpose mathematical morphology is used. Opening operations were used, the same parameters were used for morphological functions, starting with erode and ending with dilatation.
+
+The threshold value was selected manually on the basis of the value of the pixel intensity of the pulmonary trunk and the knowledge of the human thoracic anatomy. In the application, we have more control over the selected parameters. The result is segmented lungs after applying the mask to the image:
+
+<p align="center">
+  <img width="460" height="300" src="https://github.com/Marcin3232/App_for_lungs_reconstruction/ImageToReadme/ex2.png">
+</p>
+
+## bronchial segmentation
+
+At this stage the bronchi are segmented. Function ```function[BW,maskedImage] = segmentBronchas(X,T,row,column,tolerance)``` :
+
+```
+function [BW,maskedImage] = segmentBranchos(X,T,row,column,tolerance)
+X = imadjust(X);
+BW = X > T  ;                                            
+addedRegion = grayconnected(X, row, column, tolerance);
+BW = BW | addedRegion;
+BW = imclearborder(BW);
+maskedImage = X;
+maskedImage(~BW) = 0;
+end
+
+```
 
 
 # Summary
